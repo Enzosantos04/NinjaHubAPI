@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping
 
 
-public class Controller {
+public class NinjaController {
 
     //annotation para que define uma rota GET - puxar informacoes
     //get pega as informacoes
-    @GetMapping("/boasVindas") // passando uma rota para dentro da annotation
+    @GetMapping("/boasvindas") // passando uma rota para dentro da annotation
     public String boasVindas(){
         return "amor eu te amo";
     }
