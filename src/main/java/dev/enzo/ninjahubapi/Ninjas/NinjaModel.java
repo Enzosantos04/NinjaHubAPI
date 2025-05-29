@@ -1,9 +1,7 @@
 package dev.enzo.ninjahubapi.Ninjas;
 import dev.enzo.ninjahubapi.Missoes.MissoesModel;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 import java.util.List;
 
@@ -16,6 +14,9 @@ public class NinjaModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //
     private Long id;
       private String nome;
+    // annotation que deixa essa coluna da tabela unica, ou seja
+    //dois usuarios nao podem ter o memso email
+      @Column(unique = true)
       private String email;
       private int idade;
 
