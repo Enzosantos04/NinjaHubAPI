@@ -1,4 +1,4 @@
-package dev.enzo.ninjahubapi;
+package dev.enzo.ninjahubapi.Ninjas;
 
 import org.springframework.web.bind.annotation.*;
 
