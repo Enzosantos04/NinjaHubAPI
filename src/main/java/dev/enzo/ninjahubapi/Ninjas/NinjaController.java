@@ -17,4 +17,37 @@ public class NinjaController {
         return "amor eu te amo";
     }
 
+    //adicionar ninja
+    @PostMapping("/criar")
+    public String criarNinja(){
+        return "Ninja criado";
+    }
+
+    //mostrar ninja
+    @GetMapping("/todos")
+    public String mostrarNinjas(){
+        return "Mostrar Ninja";
+    }
+
+    //mostrar ninja por id
+    @GetMapping("/todosID")
+    public String mostrarNinjasPorID(){
+        return "Mostar Ninja por ID";
+    }
+
+    //atualizar ninja
+    @PutMapping("/atualizarNinja")
+    public String atualizarNinja(){
+        return "atualizar ninja";
+    }
+
+    @DeleteMapping("/deletarID")
+        public String deletarNinja(){
+            return "ninja deletado por ID";
+        }
+
+    //mostrar todos os ninjas
+    //atualizar dados dos ninjas
+    //Deletar ninja
+
 }
