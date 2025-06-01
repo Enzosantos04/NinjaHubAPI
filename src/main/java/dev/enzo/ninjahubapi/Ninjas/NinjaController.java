@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.*;
 //annotation que recebe requisicoes GET, POST, PUT e DELETE
 @RestController
 //annotation para mapear rotas e requisicoes HTTP
-@RequestMapping
-
+@RequestMapping("/ninjas") // nesse caso o paramentro vai ser
+//para acessar /ninjas primeiro para depois acessar /ninjas/criar.
 
 public class NinjaController {
 
