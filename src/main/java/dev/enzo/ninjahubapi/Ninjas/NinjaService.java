@@ -1,9 +1,10 @@
 package dev.enzo.ninjahubapi.Ninjas;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service // annotation para indicar uma camada de service
 public class NinjaService {
@@ -15,13 +16,22 @@ public class NinjaService {
     public NinjaService(NinjaRepository ninjaRepository) {
         this.ninjaRepository = ninjaRepository;
     }
+
+
     //listar todos os meus ninjas
-
-
-    // metodo do tipo List, recebendo NinjaModel
+    //metodo do tipo List passando ninjaModel
     public List<NinjaModel> listarNinjas(){
         return ninjaRepository.findAll();
     }
+
+    //listar ninjas por id
+    public NinjaModel listarNinjasPorId(Long id){
+        //usando optional pq o ninja pode existir ou nao.
+        Optional<NinjaModel> ninjaPorId = ninjaRepository.findById(id);
+        //orElse() significa vai me mandar um ninja ou retorna null
+        return ninjaPorId.orElse(null);
+    }
+
 
 
 

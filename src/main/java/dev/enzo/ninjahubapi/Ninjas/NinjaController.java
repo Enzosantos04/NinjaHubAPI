@@ -37,9 +37,9 @@ private NinjaService ninjaService;
     }
 
     //mostrar ninja por id
-    @GetMapping("/listarID")
-    public String mostrarNinjasPorID(){
-        return "Mostar Ninja por ID";
+    @GetMapping("/listar/{id}")
+    public NinjaModel listarNinjaPorId(@PathVariable Long id){
+        return ninjaService.listarNinjasPorId(id);
     }
 
     //atualizar ninja
@@ -53,8 +53,5 @@ private NinjaService ninjaService;
             return "ninja deletado por ID";
         }
 
-    //mostrar todos os ninjas
-    //atualizar dados dos ninjas
-    //Deletar ninja
 
 }
