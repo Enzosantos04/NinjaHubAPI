@@ -2,6 +2,8 @@ package dev.enzo.ninjahubapi.Ninjas;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 //annotation que recebe requisicoes GET, POST, PUT e DELETE
 @RestController
 //annotation para mapear rotas e requisicoes HTTP
@@ -9,12 +11,17 @@ import org.springframework.web.bind.annotation.*;
 //para acessar /ninjas primeiro para depois acessar /ninjas/criar.
 
 public class NinjaController {
+private NinjaService ninjaService;
+
+    public NinjaController(NinjaService ninjaService) {
+        this.ninjaService = ninjaService;
+    }
 
     //annotation para que define uma rota GET - puxar informacoes
     //get pega as informacoes
     @GetMapping("/boasvindas") // passando uma rota para dentro da annotation
     public String boasVindas(){
-        return "amor eu te amo";
+        return "boas vindas";
     }
 
     //adicionar ninja
@@ -24,13 +31,13 @@ public class NinjaController {
     }
 
     //mostrar ninja
-    @GetMapping("/todos")
-    public String mostrarNinjas(){
-        return "Mostrar Ninja";
+    @GetMapping("/listar")
+    public List<NinjaModel> listarNinjas(){
+        return ninjaService.listarNinjas();
     }
 
     //mostrar ninja por id
-    @GetMapping("/todosID")
+    @GetMapping("/listarID")
     public String mostrarNinjasPorID(){
         return "Mostar Ninja por ID";
     }

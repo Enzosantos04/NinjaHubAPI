@@ -1,6 +1,7 @@
 package dev.enzo.ninjahubapi.Missoes;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.enzo.ninjahubapi.Ninjas.NinjaModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ public class MissoesModel {
 
     //OneToMany uma missao tem varios Ninjas
     @OneToMany(mappedBy = "missoes")
+    @JsonIgnore // essa annotation evita o loop de serializacao
     private List<NinjaModel> ninja;
 
 }
