@@ -38,6 +38,12 @@ public class NinjaService {
 
     }
 
+    //deletar Ninja.
+    // tem q ser metodo void pois nao 'e necessario retornar nada para o usuario.
+    //sendo assim, nao 'e necessario usar return ou passar NinjaModel
+    public void  deletarNinjaPorId(Long id){
+         ninjaRepository.deleteById(id);
+    }
 
 
 

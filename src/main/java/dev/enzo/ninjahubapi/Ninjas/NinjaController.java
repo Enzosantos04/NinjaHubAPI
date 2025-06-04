@@ -48,9 +48,10 @@ private NinjaService ninjaService;
         return "atualizar ninja";
     }
 
-    @DeleteMapping("/deletarID")
-        public String deletarNinja(){
-            return "ninja deletado por ID";
+    //Deletar Ninja por id
+    @DeleteMapping("/deletar/{id}")
+        public void deletarNinja(@PathVariable Long id){
+        ninjaService.deletarNinjaPorId(id);
         }
 
 
