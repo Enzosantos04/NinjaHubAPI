@@ -1,6 +1,7 @@
 package dev.enzo.ninjahubapi.Ninjas;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,11 +13,13 @@ public class NinjaService {
     //cria uma instacia do repository
     //injetando como dependencia
     private NinjaRepository ninjaRepository;
+    private  NinjaMapper ninjaMapper;
 
-    public NinjaService(NinjaRepository ninjaRepository) {
+
+    public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
         this.ninjaRepository = ninjaRepository;
+        this.ninjaMapper = ninjaMapper;
     }
-
 
     //listar todos os meus ninjas
     //metodo do tipo List passando ninjaModel
@@ -33,8 +36,11 @@ public class NinjaService {
     }
 
     //Inserir ninja no banco de dados
-    public NinjaModel criarNinja(NinjaModel ninja){
-        return ninjaRepository.save(ninja);
+    public NinjaDTO criarNinja(NinjaDTO ninjaDTO){
+        NinjaModel ninjaModel = ninjaMapper.map(ninjaDTO);
+        ninjaModel = ninjaRepository.save(ninjaModel);
+        return ninjaMapper.map(ninjaModel);
+
 
     }
 
