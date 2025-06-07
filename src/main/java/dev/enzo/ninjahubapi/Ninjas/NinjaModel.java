@@ -27,6 +27,9 @@ public class NinjaModel {
       @Column(name = "img_url")
       private String imgUrl;
       private int idade;
+
+      @Column (name = "rank")
+      private String rank;
       //@ManyToOne um ninja tem uma unica missao
       @ManyToOne
       // joinColumn vai criar uma coluna chamada missoes_id na tabela NinjaRegister
