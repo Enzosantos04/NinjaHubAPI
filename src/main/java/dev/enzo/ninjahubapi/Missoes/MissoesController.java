@@ -27,23 +27,39 @@ public class MissoesController {
     }
 
     @PutMapping("/atualizarMissao/{id}")
-    public MissoesDTO atualizarMissoes(@PathVariable Long id, @RequestBody MissoesDTO missaoAtulizada){
-        return missoesService.atualizarMissaoPorId(id, missaoAtulizada);
+    public ResponseEntity<?> atualizarMissoes(@PathVariable Long id, @RequestBody MissoesDTO missaoAtualizada){
+       if(missoesService.listarMissoesPorId(id) != null){
+           MissoesDTO missoesDTO = missoesService.atualizarMissaoPorId(id,missaoAtualizada);
+           return ResponseEntity.ok(missoesDTO);
+       }else{
+           return ResponseEntity.status(HttpStatus.NOT_FOUND).body("A missao de ID " + id + " nao encontrado");
+       }
     }
 
     @GetMapping("/listar")
-    public List<MissoesDTO> mostrarMissoes(){
-        return missoesService.listarMissoes();
+    public ResponseEntity<List<MissoesDTO>> mostrarMissoes(){
+        List<MissoesDTO> missoes = missoesService.listarMissoes();
+        return ResponseEntity.ok(missoes);
     }
 
     @GetMapping("/listar/{id}")
-    public MissoesDTO mostrarMissoesPorId(@PathVariable Long id){
-        return missoesService.listarMissoesPorId(id);
+    public ResponseEntity<?> mostrarMissoesPorId(@PathVariable Long id){
+        if(missoesService.listarMissoesPorId(id) != null){
+            MissoesDTO missoesDTO = missoesService.listarMissoesPorId(id);
+            return ResponseEntity.status(HttpStatus.FOUND).body(missoesDTO);
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("A missao de ID "+ " nao foi encontrada");
+        }
     }
 
     @DeleteMapping("/deletar/{id}")
-    public void deletarId(@PathVariable Long id){
-        missoesService.deletarMissoesPorId(id);
+    public ResponseEntity<String> deletarId(@PathVariable Long id){
+        if(missoesService.listarMissoesPorId(id) != null){
+            missoesService.deletarMissoesPorId(id);
+            return ResponseEntity.ok("A missao de ID " + id + " deletado com sucesso");
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("A missao de ID " + id + " nao foi encontrada ");
+        }
     }
 
 
