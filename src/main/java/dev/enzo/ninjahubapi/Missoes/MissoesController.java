@@ -1,6 +1,8 @@
 package dev.enzo.ninjahubapi.Missoes;
 
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +20,9 @@ public class MissoesController {
 
     //adicionar missao
     @PostMapping("/criar")
-    public MissoesDTO criarMissoes(@RequestBody MissoesDTO missoesDTO){
-        return missoesService.criarMissoes(missoesDTO);
+    public ResponseEntity<String> criarMissoes(@RequestBody MissoesDTO missoesDTO){
+        MissoesDTO missaoDTO = missoesService.criarMissoes(missoesDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Ninja Criado com sucesso " + missaoDTO.getNomeMissao() + " (ID) " + missaoDTO.getId());
 
     }
 
